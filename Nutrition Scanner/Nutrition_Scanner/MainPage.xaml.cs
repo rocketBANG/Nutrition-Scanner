@@ -38,7 +38,6 @@ namespace Nutrition_Scanner
 
             NutrientConsumption nutrition = new NutrientConsumption()
             {
-                ID = "goodbye",
                 Longitude = 0.320f,
                 Latitude = 0.69f
             };
@@ -46,6 +45,13 @@ namespace Nutrition_Scanner
             await AzureManager.AzureManagerInstance.PostHotDogInformation(nutrition);
 
             await CrossMedia.Current.Initialize();
+
+            List<NutrientConsumption> nutrientList = await AzureManager.AzureManagerInstance.GetHotDogInformation();
+
+            foreach(NutrientConsumption n in nutrientList)
+            {
+                Debug.WriteLine(n.Latitude + " " + n.Longitude + " " + n.ID);
+            }
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
