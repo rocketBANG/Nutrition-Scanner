@@ -7,6 +7,7 @@
         <ScrollView>
             <StackLayout Margin="20" Orientation="Vertical">
                 <Button Text="Take Photo and Analyze" Clicked="loadCamera" />
+                <Button Text="Analyze from gallery" Clicked="loadGallery" />
 
                 <StackLayout Orientation="Horizontal">
                     <Label x:Name="TagLabel">
