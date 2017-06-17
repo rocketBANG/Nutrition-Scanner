@@ -10,12 +10,12 @@ namespace Nutrition_Scanner
 
         private static AzureManager instance;
         private MobileServiceClient client;
-        private IMobileServiceTable<NutrientConsumption> nutrientconsumptionTable;
+        private IMobileServiceTable<NutrientModel> nutrientTable;
 
         private AzureManager()
         {
             this.client = new MobileServiceClient("http://nutritionalscanner.azurewebsites.net");
-            this.nutrientconsumptionTable = this.client.GetTable<NutrientConsumption>();
+            this.nutrientTable = this.client.GetTable<NutrientModel>();
         }
 
         public MobileServiceClient AzureClient
@@ -36,25 +36,36 @@ namespace Nutrition_Scanner
             }
         }
 
-        public async Task<List<NutrientConsumption>> GetHotDogInformation()
+        public async Task<List<NutrientModel>> GetAllNutrientInfo()
         {
-            return await this.nutrientconsumptionTable.ToListAsync();
-        }
-
-        public async Task PostHotDogInformation(NutrientConsumption notHotDogModel)
-        {
-            await this.nutrientconsumptionTable.InsertAsync(notHotDogModel);
-        }
-
-        public async Task UpdateHotDogInformation(NutrientConsumption notHotDogModel)
-        {
-            await this.nutrientconsumptionTable.UpdateAsync(notHotDogModel);
+            return await this.nutrientTable.ToListAsync();
         }
 
 
-        public async Task DeleteHotDogInformation(NutrientConsumption notHotDogModel)
+        public async Task<List<NutrientModel>> GetNutrientInfo(DateTime time)
         {
-            await this.nutrientconsumptionTable.DeleteAsync(notHotDogModel);
+            return await this.nutrientTable.Where(nutrientModel => nutrientModel.Date == time).ToListAsync();
+        }
+
+        public async Task<List<NutrientModel>> GetNutrientInfo(string nutrient)
+        {
+            return await this.nutrientTable.Where(nutrientModel => nutrientModel.Nutrient == nutrient).ToListAsync();
+        }
+
+        public async Task PostNutrientInfo(NutrientModel nutrientModel)
+        {
+            await this.nutrientTable.InsertAsync(nutrientModel);
+        }
+
+        public async Task UpdateNutrientInfo(NutrientModel nutrientModel)
+        {
+            await this.nutrientTable.UpdateAsync(nutrientModel);
+        }
+
+
+        public async Task DeleteNutrientInfo(NutrientModel nutrientModel)
+        {
+            await this.nutrientTable.DeleteAsync(nutrientModel);
         }
 
 

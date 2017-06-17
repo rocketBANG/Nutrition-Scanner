@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Nutrition_Scanner"
-             x:Class="Nutrition_Scanner.MainPage">
+             x:Class="Nutrition_Scanner.AddNutrients"             
+             Title="Add Nutrients">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="20" Orientation="Vertical">
-                <Button Text="Take Photo and Analyze" Clicked="loadCamera" />
-                <Button Text="Analyze from gallery" Clicked="loadGallery" />
+                <Button Text="Take Photo and Analyze" Clicked="loadFromCamera" />
+                <Button Text="Analyze from gallery" Clicked="loadFromGallery" />
+                <Button Text="Add Manually" Clicked="addManually" />
+
+                <ActivityIndicator x:Name="ld_prediction" IsRunning="False" />
+
 
                 <StackLayout Orientation="Horizontal">
                     <Label x:Name="TagLabel">
@@ -21,4 +25,5 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
+
 </ContentPage>

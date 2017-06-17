@@ -13,7 +13,7 @@ namespace Nutrition_Scanner
         {
             InitializeComponent();
 
-            MainPage = new Nutrition_Scanner.MainPage();
+            MainPage = new Nutrition_Scanner.NutritionScanner();
         }
 
         protected override void OnStart()
