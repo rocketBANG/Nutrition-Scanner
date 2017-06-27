@@ -16,7 +16,7 @@ namespace Nutrition_Scanner
         public string Nutrient { get; set; }
 
         [JsonProperty(PropertyName = "Value")]
-        public string Value { get; set; }
+        public double Value { get; set; }
 
         [JsonProperty(PropertyName = "Date")]
         public DateTime Date { get; set; }

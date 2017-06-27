@@ -22,6 +22,7 @@
                 <RelativeLayout>
                     <Image x:Name="image" Aspect="AspectFit"/>
                 </RelativeLayout>
+                <ActivityIndicator x:Name="loading_data" IsRunning="False" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

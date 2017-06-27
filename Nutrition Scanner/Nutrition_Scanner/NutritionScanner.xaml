@@ -4,6 +4,6 @@
              x:Class="Nutrition_Scanner.NutritionScanner"
             xmlns:local="clr-namespace:Nutrition_Scanner">
   <!--Pages can be added as references or inline-->
-    <local:NutrientTable />
+    <local:NutrientDisplay />
     <local:AddNutrients />
 </TabbedPage>

@@ -43,9 +43,14 @@
     </Compile>
     <Compile Include="AzureManager.cs" />
     <Compile Include="ImageAnalyser.cs" />
+    <Compile Include="Models\NutrientCellModel.cs" />
     <Compile Include="Models\NutrientModel.cs" />
-    <Compile Include="NutrientTable.xaml.cs">
-      <DependentUpon>NutrientTable.xaml</DependentUpon>
+    <Compile Include="NutrientCell.cs" />
+    <Compile Include="NutrientData.xaml.cs">
+      <DependentUpon>NutrientData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NutrientDisplay.xaml.cs">
+      <DependentUpon>NutrientDisplay.xaml</DependentUpon>
     </Compile>
     <Compile Include="NutritionScanner.xaml.cs">
       <DependentUpon>NutritionScanner.xaml</DependentUpon>
@@ -95,7 +100,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="NutrientTable.xaml">
+    <EmbeddedResource Include="NutrientDisplay.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -108,6 +113,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AddNutrients.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NutrientData.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

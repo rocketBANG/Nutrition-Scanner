@@ -83,31 +83,18 @@ namespace Nutrition_Scanner
 
         private async void getNutrients(MediaFile file)
         {
+            loading_data.IsRunning = true;
+
             ImageAnalyser im = new ImageAnalyser();
 
             Dictionary<string, string> nutrientDictionary = await im.makePredictionRequest(file);
 
-            foreach (KeyValuePair<string, string> nutrientPair in nutrientDictionary)
-            {
-                AzureManager am = AzureManager.AzureManagerInstance;
-                NutrientModel nm = new NutrientModel()
-                {
-                    Date = DateTime.Today,
-                    Nutrient = nutrientPair.Key,
-                    Value = nutrientPair.Value
-                };
-                List<NutrientModel> existing = await am.GetNutrientInfo(nutrientPair.Key);
-                if (existing.Count > 0)
-                {
-                    NutrientModel newModel = existing[0];
-                    newModel.Value += nm.Value;
-                    await am.UpdateNutrientInfo(newModel);
-                }
-                else
-                {
-                    await am.PostNutrientInfo(nm);
-                }
-            }
+            NutrientData nutrientDataPage = new NutrientData(nutrientDictionary);
+
+            loading_data.IsRunning = false;
+
+            await Navigation.PushModalAsync(nutrientDataPage);
+
         }
 
 
@@ -115,7 +102,8 @@ namespace Nutrition_Scanner
 
         private async void addManually(object sender, EventArgs e)
         {
-
+            NutrientData nutrientDataPage = new NutrientData(null);
+            await Navigation.PushModalAsync(nutrientDataPage);
         }
     }
 }

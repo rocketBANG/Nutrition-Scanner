@@ -52,6 +52,12 @@ namespace Nutrition_Scanner
             return await this.nutrientTable.Where(nutrientModel => nutrientModel.Nutrient == nutrient).ToListAsync();
         }
 
+        public async Task<List<NutrientModel>> GetNutrientInfo(string nutrient, DateTime time)
+        {
+            return await this.nutrientTable.Where(nutrientModel => nutrientModel.Nutrient == nutrient && nutrientModel.Date == time).ToListAsync();
+        }
+
+
         public async Task PostNutrientInfo(NutrientModel nutrientModel)
         {
             await this.nutrientTable.InsertAsync(nutrientModel);
@@ -66,7 +72,19 @@ namespace Nutrition_Scanner
         public async Task DeleteNutrientInfo(NutrientModel nutrientModel)
         {
             await this.nutrientTable.DeleteAsync(nutrientModel);
+            
         }
+
+        public async Task ClearNutrientInfo(DateTime time)
+        {
+            var nutrientList = await this.nutrientTable.Where(nutrientModel => nutrientModel.Date == time).ToListAsync();
+
+            foreach(var nutrient in nutrientList)
+            {
+                await this.nutrientTable.DeleteAsync(nutrient);
+            }
+        }
+
 
 
     }

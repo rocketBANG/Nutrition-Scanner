@@ -10,6 +10,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Nutrition_Scanner
 {
@@ -103,6 +104,7 @@ namespace Nutrition_Scanner
                 //Get rid of file once we have finished using it
                 file.Dispose();
             }
+
             return _nutrients;
         }
 
